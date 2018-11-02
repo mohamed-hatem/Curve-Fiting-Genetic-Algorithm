@@ -379,7 +379,7 @@ public:
 				equation_variable = 1.0 - ((float)current_itr / GENERATION_LIMIT);
 				equation_variable = pow(equation_variable, DEPENDENCY_FACTOR);
 				/*Range of values are float 0 -> 1
-				*This line of code has imporved the results if we inc or dec the values
+				*This line of code has imporved the results if we inc  the values
 				*/
 				random_number = (rand() % 10000) / 10000.0;
 				equation_variable = 1.0 - (pow(random_number, equation_variable));
@@ -459,7 +459,7 @@ public:
 
 				equation_variable = 1.0 - ((float)current_itr / GENERATION_LIMIT);
 				equation_variable = pow(equation_variable, DEPENDENCY_FACTOR);
-				random_number = (rand() % 100) / 100.0;
+				random_number = (rand() % 10000) / 10000.0;
 				equation_variable = 1.0 - (pow(random_number, equation_variable));
 				equation_variable *= delta_change;
 				if (change_effect)
