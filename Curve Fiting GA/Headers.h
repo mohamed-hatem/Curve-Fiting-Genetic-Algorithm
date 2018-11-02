@@ -23,7 +23,7 @@ using namespace std;
 //Upper bound
 #define UB 10.0
 //Name of the input file
-#define FILE_NAME "test_cases/input.txt"
+#define FILE_NAME "test_cases/last_test_case.txt"
 /*Incase we wanted to implement the mutation improvment technique
 Giving each gene a fixed chance to improve fitness value on mutation
 If the value it produced makes the fitness of the organism worse

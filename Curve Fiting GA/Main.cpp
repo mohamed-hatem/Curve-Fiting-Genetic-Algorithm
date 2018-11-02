@@ -70,7 +70,7 @@ struct Organism
 
 };
 
-//Class to hold the Population of the GA
+//Class to hold the Population of the GA and apply selection , crossover , mutation and replacment on 
 class Population
 {   //Array for the Initial Population and New Population at the end of each generation
 	Organism my_population[POPULATION_LIMIT];
@@ -341,7 +341,7 @@ public:
 		for (int i = 0; i < POPULATION_LIMIT; i++)
 		{   //Save the old fitness value
 #if ENABLE_MUTATION_IMPROVMENT_TECHNIQUE
-			old_fitness_value = my_population[i].fitness;
+			
 			//Set or Reset the mutation_chance_counter
 			mutation_chance_counter = 0;
 #endif
@@ -350,6 +350,7 @@ public:
 			{
 				//Save the old gene value
 #if ENABLE_MUTATION_IMPROVMENT_TECHNIQUE
+				old_fitness_value = my_population[i].fitness;
 				if (mutation_chance_counter < FIXED_IMPROVMENT_MUTATION_CHANCE)
 				{
 					old_gene_value = my_population[i].chromosome[j];
@@ -419,7 +420,7 @@ public:
 		for (int i = 0; i<POPULATION_LIMIT; i++)
 		{
 #if ENABLE_MUTATION_IMPROVMENT_TECHNIQUE
-			old_fitness_value = offspring_population[i].fitness;
+			
 			//Set or Reset the mutation_chance_counter
 			mutation_chance_counter = 0;
 #endif
@@ -428,6 +429,7 @@ public:
 			for (int j = 0; j<degree_of_polynomial[current_test_case_number] + 1; j++)
 			{
 #if ENABLE_MUTATION_IMPROVMENT_TECHNIQUE
+				old_fitness_value = offspring_population[i].fitness;
 				if (mutation_chance_counter < FIXED_IMPROVMENT_MUTATION_CHANCE)
 				{
 					old_gene_value = offspring_population[i].chromosome[j];
@@ -547,6 +549,7 @@ int main()
 		current_test_case_population.initPopulation();
 		current_test_case_population.sortPopulation(true);
 		begin = clock();
+	
 		 //Genetic Algorithm	
 		for (int j = 0; j<GENERATION_LIMIT; j++)
 		{
