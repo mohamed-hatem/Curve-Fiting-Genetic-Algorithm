@@ -23,15 +23,23 @@ using namespace std;
 //Upper bound
 #define UB 10.0
 //Name of the input file
-#define FILE_NAME "test_cases/last_test_case.txt"
+#define INPUT_FILE_NAME "test_cases/input.txt"
+
 /*Incase we wanted to implement the mutation improvment technique
-Giving each gene a fixed chance to improve fitness value on mutation
-If the value it produced makes the fitness of the organism worse
+*Giving each gene a fixed chance to improve fitness value on mutation
+*If the value it produced makes the fitness of the organism worse
+*If enabled it will take longer to run the algorithm but the results are better
 */
 #define ENABLE_MUTATION_IMPROVMENT_TECHNIQUE true
 #if ENABLE_MUTATION_IMPROVMENT_TECHNIQUE
 #define FIXED_IMPROVMENT_MUTATION_CHANCE 6
+//Name of output file
+#define OUTPUT_FILE_NAME "result_with_mutation_enhancment.txt"
 #endif
+#if not  ENABLE_MUTATION_IMPROVMENT_TECHNIQUE
+#define OUTPUT_FILE_NAME "result_without_mutation_enhancment.txt"
+#endif
+
 
 //Struct for the points of the polynomial equation
 struct Coordinates

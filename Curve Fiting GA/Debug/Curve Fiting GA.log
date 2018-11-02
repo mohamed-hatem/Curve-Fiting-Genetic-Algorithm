@@ -3,13 +3,15 @@ c:\users\dell\documents\visual studio 2017\projects\curve fiting ga\curve fiting
 c:\users\dell\documents\visual studio 2017\projects\curve fiting ga\curve fiting ga\main.cpp(370): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
 c:\users\dell\documents\visual studio 2017\projects\curve fiting ga\curve fiting ga\main.cpp(375): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
 c:\users\dell\documents\visual studio 2017\projects\curve fiting ga\curve fiting ga\main.cpp(379): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-c:\users\dell\documents\visual studio 2017\projects\curve fiting ga\curve fiting ga\main.cpp(382): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-c:\users\dell\documents\visual studio 2017\projects\curve fiting ga\curve fiting ga\main.cpp(448): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-c:\users\dell\documents\visual studio 2017\projects\curve fiting ga\curve fiting ga\main.cpp(453): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-c:\users\dell\documents\visual studio 2017\projects\curve fiting ga\curve fiting ga\main.cpp(457): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\dell\documents\visual studio 2017\projects\curve fiting ga\curve fiting ga\main.cpp(384): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\dell\documents\visual studio 2017\projects\curve fiting ga\curve fiting ga\main.cpp(385): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\dell\documents\visual studio 2017\projects\curve fiting ga\curve fiting ga\main.cpp(451): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\dell\documents\visual studio 2017\projects\curve fiting ga\curve fiting ga\main.cpp(456): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
 c:\users\dell\documents\visual studio 2017\projects\curve fiting ga\curve fiting ga\main.cpp(460): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\dell\documents\visual studio 2017\projects\curve fiting ga\curve fiting ga\main.cpp(462): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\dell\documents\visual studio 2017\projects\curve fiting ga\curve fiting ga\main.cpp(463): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
 c:\users\dell\documents\visual studio 2017\projects\curve fiting ga\curve fiting ga\main.cpp(331): warning C4101: 'new_gene_value': unreferenced local variable
-c:\users\dell\documents\visual studio 2017\projects\curve fiting ga\curve fiting ga\main.cpp(504): warning C4101: 'first_index': unreferenced local variable
-c:\users\dell\documents\visual studio 2017\projects\curve fiting ga\curve fiting ga\main.cpp(504): warning C4101: 'second_index': unreferenced local variable
-c:\users\dell\documents\visual studio 2017\projects\curve fiting ga\curve fiting ga\main.cpp(534): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+c:\users\dell\documents\visual studio 2017\projects\curve fiting ga\curve fiting ga\main.cpp(507): warning C4101: 'first_index': unreferenced local variable
+c:\users\dell\documents\visual studio 2017\projects\curve fiting ga\curve fiting ga\main.cpp(507): warning C4101: 'second_index': unreferenced local variable
+c:\users\dell\documents\visual studio 2017\projects\curve fiting ga\curve fiting ga\main.cpp(552): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
   Curve Fiting GA.vcxproj -> C:\Users\DELL\Documents\Visual Studio 2017\Projects\Curve Fiting GA\Debug\Curve Fiting GA.exe

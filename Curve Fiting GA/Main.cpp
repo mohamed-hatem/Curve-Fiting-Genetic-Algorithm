@@ -226,10 +226,10 @@ public:
 			{
 				//Choose a random number from 0 till 10
 				random_number = rand() % 11;
-				/*To generate a float divide by a random number from 1-10
+				/*To generate a float divide by a random number from 1-1000
 				*Nnotice we start from 1 to avoid dividing by zero
 				*/
-				random_gene = random_number / ((rand() % 11) + 1.0);
+				random_gene = random_number / ((rand() % 1001) + 1.0);
 				//Get a random number to be used in determining negative or not
 				probability_of_negative_number = rand() % 100;
 				//If the random number generated is less than or equal 50 then the gene will be negative
@@ -330,7 +330,7 @@ public:
 		*/
 		float new_gene_value, delta_change, equation_variable;
 
-		double random_number;
+		float random_number;
 		//Storing old values incase we implement Mutation improvment technique
 		//Mutation_chance_counter counts how many times mutation produced a bad gene 
 #if ENABLE_MUTATION_IMPROVMENT_TECHNIQUE
@@ -378,7 +378,10 @@ public:
 				//Equation : y=(1-randomnumber^(currentgeneration/GENERATION_LIMIT)^DEPENDENCY_FACTOR)
 				equation_variable = 1.0 - ((float)current_itr / GENERATION_LIMIT);
 				equation_variable = pow(equation_variable, DEPENDENCY_FACTOR);
-				random_number = (rand() % 100) / 100.0;
+				/*Range of values are float 0 -> 1
+				*This line of code has imporved the results if we inc or dec the values
+				*/
+				random_number = (rand() % 10000) / 10000.0;
 				equation_variable = 1.0 - (pow(random_number, equation_variable));
 				equation_variable *= delta_change;
 
@@ -514,8 +517,23 @@ public:
 			else
 				my_population[my_population_counter++].copyOrganism(offspring_population[new_generation_counter++]);
 		}
-		for (int i = 0; i<POPULATION_LIMIT; i++)
+		for (int i = 0; i < POPULATION_LIMIT; i++)
+		{
 			delete replacment_population[i].chromosome;
+			
+		}
+	}
+	//Dealocate offspring dynamic data for next iteration of genetic algorithm 
+	void freeOffspring()
+	{ 
+		
+		for (int i = 0; i < POPULATION_LIMIT; i++)
+		{
+			
+			
+			delete offspring_population[i].chromosome;
+			
+		}
 	}
 
 };
@@ -536,6 +554,8 @@ int main()
 	system("color 70");
 	//Get input from file
 	getInputFromFile();
+	//Float to calculate percentage done by the algorithm
+	float percentage_of_current_test_case_done;
 	//Population for the test cases
 	Population current_test_case_population;
 	//Initalize the solutions array with the number of test cases
@@ -549,18 +569,26 @@ int main()
 		current_test_case_population.initPopulation();
 		current_test_case_population.sortPopulation(true);
 		begin = clock();
-	
+		percentage_of_current_test_case_done = 10.0;
 		 //Genetic Algorithm	
 		for (int j = 0; j<GENERATION_LIMIT; j++)
 		{
-			if (j == GENERATION_LIMIT / 2)
-				cout << "***Half way done***"<<endl;
+		    //Indication for percentage done by the algorithm	
+			if (percentage_of_current_test_case_done <= (float)((j + 1.0) / GENERATION_LIMIT)*100.0)
+			{
+				cout << "***" << percentage_of_current_test_case_done << "% completed***" << endl;
+				percentage_of_current_test_case_done += 10.0;
+			}
 			current_test_case_population.selection();
 			current_test_case_population.sortPopulation(true);
 			current_test_case_population.crossover();
 			current_test_case_population.mutation(j);
 			current_test_case_population.sortPopulation(false);
 			current_test_case_population.replacment();
+			if (j < GENERATION_LIMIT-1)
+			{
+				current_test_case_population.freeOffspring();
+			}
 		}
 		//Save the best organism for each test case at the end of the genetic algorithm
 		solutions[i].copyOrganism(current_test_case_population.getBest());
@@ -581,7 +609,7 @@ int main()
 void outputToFile(Organism * &solutions)
 {
 	ofstream output_file;
-	output_file.open("Result.txt");
+	output_file.open(OUTPUT_FILE_NAME);
 	for (int j = 0; j<number_of_test_cases; j++)
 	{
 		output_file << "test case " << j + 1 << " : " << endl;
@@ -610,7 +638,7 @@ void outputToFile(Organism * &solutions)
 void getInputFromFile()
 {
 	ifstream input_file;
-	input_file.open(FILE_NAME);
+	input_file.open(INPUT_FILE_NAME);
 	input_file >> number_of_test_cases;
 	number_of_points = new int[number_of_test_cases];
 	degree_of_polynomial = new int[number_of_test_cases];
