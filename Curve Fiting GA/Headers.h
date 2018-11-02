@@ -23,7 +23,7 @@ using namespace std;
 //Upper bound
 #define UB 10.0
 //Name of the input file
-#define FILE_NAME "input.txt"
+#define FILE_NAME "test_cases/input.txt"
 /*Incase we wanted to implement the mutation improvment technique
 Giving each gene a fixed chance to improve fitness value on mutation
 If the value it produced makes the fitness of the organism worse
@@ -42,58 +42,4 @@ struct Coordinates
 
 };
 
-//Struct for the organism of our Genetic Algorithm
-struct Organism
-{   //Floating point Array for our organism (GenoType) -> array to hold  each gene value
-	float * chromosome;
-	//Error value of the organism
-	float fitness;
-	//Function to copy 1 organism into another
-	void copyOrganism(Organism x)
-	{   //Copy fitness value 
-		fitness = x.fitness;
-		//Iterate over each gene and copy it
-		for (int i = 0; i<degree_of_polynomial[current_test_case_number] + 1; i++)
-		{
-			chromosome[i] = x.chromosome[i];
 
-
-		}
-
-	}
-	//Function to calculate the value of y coordinate given the cofficients and the x coordinate (ycalc)
-	float calculateYCoordinate(float x_coordinate, int number_of_coefficients)
-	{   //ex: y = a0+a1*x+a2*x^2......
-		float total_sum = 0.0, current_sum;
-		for (int i = 0; i<number_of_coefficients; i++)
-		{
-			current_sum = chromosome[i];
-			for (int j = 0; j<i; j++)
-			{
-				current_sum *= x_coordinate;
-			}
-			total_sum += current_sum;
-		}
-		return total_sum;
-	}
-	//Function to calculate the fitness value of the organism using the given sigma equaion 1/N*(sigma((ycalc-yactual)^2))
-	void calculateFitness()
-	{
-		fitness = 0.0;
-		float current_x_coordinate, current_actual_y_coordinate, current_calculated_y_coordinate;
-		for (int i = 0; i<number_of_points[current_test_case_number]; i++)
-		{   //Get the each x coordinate of the current test case
-			current_x_coordinate = list_of_coordinates[current_test_case_number][i].x_coordinate;
-			//Get each actual y coordinate of the current test case
-			current_actual_y_coordinate = list_of_coordinates[current_test_case_number][i].y_coordinate;
-			//Calculate the y coordinate
-			current_calculated_y_coordinate = calculateYCoordinate(current_x_coordinate, degree_of_polynomial[current_test_case_number] + 1);
-			//Applying the sigma equation for each ycalc and yactual
-			fitness = fitness + ((current_calculated_y_coordinate - current_actual_y_coordinate)*(current_calculated_y_coordinate - current_actual_y_coordinate));
-		}
-		// 1/N * sigma result
-		fitness = fitness / (float)number_of_points[current_test_case_number];
-	}
-
-
-};
