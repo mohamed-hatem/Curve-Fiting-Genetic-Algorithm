@@ -36,7 +36,7 @@ struct Organism
 	//Function to calculate the value of y coordinate given the cofficients and the x coordinate (ycalc)
 	float calculateYCoordinate(float x_coordinate, int number_of_coefficients)
 	{   //ex: y = a0+a1*x+a2*x^2......
-		float total_sum = 0.0, current_sum;
+		float total_sum = 0.0, current_sum=0.0;
 		for (int i = 0; i<number_of_coefficients; i++)
 		{
 			current_sum = chromosome[i];
@@ -185,13 +185,15 @@ public:
 		//Initialize the selection_population array
 		for (int i = 0; i<POPULATION_LIMIT; i++)
 			selection_population[i].chromosome = new float[degree_of_polynomial[current_test_case_number] + 1];
-		// first and second index of organisms to be compared in tournment selection chosen at random
+		//First and second index of organisms to be compared in tournment selection chosen at random
 		int first_index, second_index;
-		//copy current population to selection_population array
+		//Copy current population to selection_population array
 		for (int i = 0; i<POPULATION_LIMIT; i++)
 			selection_population[i].copyOrganism(my_population[i]);
-		//selection process
-		for (int i = 0; i<POPULATION_LIMIT; i++)
+		
+		//Selection process
+		//Best 2 organisms are always taken
+		for (int i = 2; i<POPULATION_LIMIT; i++)
 		{//choose 2 random index from 0 till POPULATION_LIMIT - 1
 			first_index = rand() % POPULATION_LIMIT;
 			second_index = rand() % POPULATION_LIMIT;
@@ -227,7 +229,7 @@ public:
 				//Choose a random number from 0 till 10
 				random_number = rand() % 11;
 				/*To generate a float divide by a random number from 1-1000
-				*Nnotice we start from 1 to avoid dividing by zero
+				*Notice we start from 1 to avoid dividing by zero
 				*/
 				random_gene = random_number / ((rand() % 1001) + 1.0);
 				//Get a random number to be used in determining negative or not
@@ -263,7 +265,7 @@ public:
 		{   //get 2 indices next to each other to preform crossover on
 
 			first_index = i % POPULATION_LIMIT;
-			second_index = i + 1 % POPULATION_LIMIT;
+			second_index = (i + 1) % POPULATION_LIMIT;
 			//Evaluate the chance of crossover (the better the fitness the better the chance of crossover)  
 			if (rand() % 100<CROSSOVER_PROBABILITY + evaluateChanceOfCrossover(first_index) + evaluateChanceOfCrossover(second_index))
 			{
@@ -281,7 +283,7 @@ public:
 				crossover_counter += 2;
 
 			}
-			i++;
+			i+=2;
 		}
 
 
@@ -339,7 +341,7 @@ public:
 #endif
 
 		for (int i = 0; i < POPULATION_LIMIT; i++)
-		{   //Save the old fitness value
+		{   
 #if ENABLE_MUTATION_IMPROVMENT_TECHNIQUE
 			
 			//Set or Reset the mutation_chance_counter
@@ -348,9 +350,11 @@ public:
 
 			for (int j = 0; j < degree_of_polynomial[current_test_case_number] + 1; j++)
 			{
-				//Save the old gene value
+				
 #if ENABLE_MUTATION_IMPROVMENT_TECHNIQUE
+				//Save the old fitness value
 				old_fitness_value = my_population[i].fitness;
+				//Save the old gene value
 				if (mutation_chance_counter < FIXED_IMPROVMENT_MUTATION_CHANCE)
 				{
 					old_gene_value = my_population[i].chromosome[j];
@@ -379,7 +383,7 @@ public:
 				equation_variable = 1.0 - ((float)current_itr / GENERATION_LIMIT);
 				equation_variable = pow(equation_variable, DEPENDENCY_FACTOR);
 				/*Range of values are float 0 -> 1
-				*This line of code has imporved the results if we inc  the values
+				*This line of code has imporved the results if we inc the number of zeroes
 				*/
 				random_number = (rand() % 10000) / 10000.0;
 				equation_variable = 1.0 - (pow(random_number, equation_variable));
